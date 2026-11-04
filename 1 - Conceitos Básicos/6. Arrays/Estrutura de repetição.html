@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    //Estrutura de Repetição
+    //------------------------------------------------------------------------------------------------------
+    /*
+    Um loop é uma estrutura de controle que permite repetir um bloco de código várias vezes, automatizando
+    tarefas e evita a necessidade de reescrever o mesmo código diversas vezes. O códiga continua sendo executa-
+    do enquando a condição definida for verdadeira - usando contadores e iteradores para controlar o processo.
+
+    Como funciona?
+
+    1. Inicialização: Define um ponto de partida( um contador começando com 0)
+    2. Condição: Verifica se é uma condição verdadeira. Se for verdadeira, ele executa o código.
+    3. Execução: O código dentro do loop é executado.
+    4. Iteração: O contador é atualizado, sempre incrementando +1
+    5. Repetição/Saída: Volta para o passo 2, após ter executado todas condições verdadeira, o loop para.]
+
+    Exemplo Prático:
+
+    Você quer exebir a mensagem 'Olá, Mundo!' 5 vezes. Ao invés de escrever o mesmo código 5 vezes, você
+    usa um loop.
+
+    PSEUDO CÓDIGO -
+    Para o contador de 1 até 5:
+        Imprimir 'Olá, Mundo!'
+    
+        O loop fará isso:
+    Imprime "Olá, Mundo!" (contador=1)
+    Imprime "Olá, Mundo!" (contador=2)
+    Imprime "Olá, Mundo!" (contador=3)
+    Imprime "Olá, Mundo!" (contador=4)
+    Imprime "Olá, Mundo!" (contador=5)
+
+    O loop para porque o contador atingiu 5.
+    
+    Tipos comuns:
+    
+    for loop: Ideal para quando você sabe o número exato de repetições.
+    while loop: Executa enquanto uma condição for verdadeira, sem um número predefinido de repetições. 
+    
+    Por que são importantes:
+    
+    Eficiência: Automatizam tarefas repetitivas, economizando tempo e esforço.
+    
+    Otimização: Essenciais para processar listas, arrays ou grandes volumes de dados.
+    
+    Automação: Permitem criar programas que realizam ações contínuas, como verificar portas em um sistema
+
+    **EXEMPLO OBJETO**
+
+    const pessoa ={
+      nome: 'Ana',
+      idade: 25,
+      cidade: "Belém"
+    };
+
+    for (let chave in person){
+      console.log(chave);        // nome, idade e cidade -- propiedades do objeto
+      console.log(pessoa[chave]) // Ana, 25 e Belém -- valor de cada propiedade
+    };
+    
+    **EXEMPLO COM ARRAY**
+    
+    const cores= ['vermelho', 'azul', 'verde']
+
+    for (let indice in cores){
+      console.log(indice) // 0, 1 e 2 -- índices do array
+      console.log(cores[indice]); 
+
+    }
+    /------------------------------------------------------------------------------------------------------
+    WHILE: O QUE É?
+
+    O while na programação é uma estrutura de repetição semelhante ao FOR. Enquanto no FOR você sabe quantas vezes
+    o loop vai ocorrer, no WHILE o loop ocorre enquanto a condição for verdadeira. O WHILE é uma opção ideal para quando
+    você não sabe quantas vezes será necessário que o loop ocorra. A condição é testada antes de ser executada - se for 
+    falsa de imediato, o loop não ocorre. No DO-WHILE o loop ocorre antes  da condição ser verdadeira ou não - essa é 
+    a única diferença entre do-while e while.
+
+    console.log("Restante do código / Aula de while, do while, for, for in e for of")
+    
+    // 5! = 5*4*3*2*1 = 120 -- fatorial de 5 é 120
+    let n= 10
+    let fat=1
+
+    while(n>1){
+      fat*=n
+      //fat=fat*n
+      n--
+    }
+    console.log(fat)
+    //------------------------------------------------------------------------------------------------------
+     
+    
+    let contadorWhile1 = 3
+      
+      // enquanto condição for verdadeira, execute...
+      
+      while (contadorWhile1 < 3) { // não será executado, pois a variável é igual 3 e não menor
+        console.log(`executando ${contadorWhile1}`)
+        contadorWhile1++
+      }
+      console.log("Fim do Programa")
+      
+      
+      // do while
+      
+      do{
+        console.log(`executando ${contadorWhile1}`)
+        contadorWhile1++
+      }while(contadorWhile1 < 3)
+      console.log("Fim do programa")
+
+    */
+    //------------------------------------------------------------------------------------------------------
+      
+      console.log("Início do Programa")
+      for(let i=0;i<10; i++){
+        // o for é um loop que será executado enquanto a execução for verdadeira.
+        //1 - O inicializador define a variável de controle e o seu valor inicial
+        //2 - A condiçãa é uma expressão booleana que é avaliada a cada iteração.
+        // Se for verdadeira, continua. Se for falsa, encerra o loop
+        //3 - O icrementro é a ação que altera o valor da variável de controle a cada iteração
+        // No exemplo, a condição será verdadeira enquanto i for menor que 10
+        console.log("CFB Cursos")
+      }
+      console.log("Fim do programa")
+      //------------------------------------------------------------------------
+      console.log("Início do Programa 2")
+      for(let i=0;i<10; i++){
+        // o for é um loop que será executado enquanto a execução for verdadeira.
+        // No exemplo, a condição será verdadeira enquanto i for menor que 10
+        console.log("CFB Cursos - valor de i: " + i)
+      }
+      console.log("Fim do programa")
+      //--------------------------------------------------------------------------------------
+      console.log("Início do Programa")
+      for(let i=0;i<100; i++){
+        // o for é um loop que será executado enquanto a execução for verdadeira.
+        // No exemplo, a condição será verdadeira enquanto i for menor que 10
+        if(i%2==0){
+          console.log(i + "e par") // 0 é false e 1 é true, mas aqui o zero será par porque "i%2==0"
+        }else{
+          console.log(i + "e impar")
+        }
+      }
+      console.log("Fim do programa")
+    /*------------------------------------------------------------------------------------------------------
+    'for in' e 'for of'
+    O for in é para obter o índice do array.
+    O for in é usado para pecorrer propiedade extras adicionadas a array.
+    O for in é usado mais com objetos e retorna chaves/índices.
+    O for of é para obter o valor do array.
+    O for of é usado quando: arrays, strings, iteráveis.
+    
+    
+    
+    exemplo 1:
+    
+    
+    const objs=document.getElementByTagName("div")
+    let num [10,20,30,40,50]
+
+    for (let i=0; i<num.length;i++){    // for normal
+        console.log()
+    }
+    
+    for (o of objs){
+        console.log(o.innerHTML="Curso")    // for of
+    }
+    
+    for (o in objs){
+        console.log(objs)    // for in
+    }
+   
+   
+   
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   //Uso do BREAK e do CONTINUE:
+   -break e continue: conceitos
+   -O break é uma expresão que gera uma interrupção na execução do loop
+   -O continue é uma expressão que gera uma interrupção apenas naquela iteração e pula pra próxima sem problemas
+   
+  let n1=0
+  let max1=1000
+  let pares1=0
+
+  while (n1<max1){
+    console.log("CFB Cursos - " + n1)
+    if (n1>10){
+      break
+    }
+    n1++
+  }
+  console.log("Fim do Programa")
+  //------------------------------------------------------------------------------------------------------
+      
+  let n=0
+  let max=1000
+  let pares=0
+
+  for (let i=0; i<max; i++){
+    if (i%2!=0){
+      continue
+    }
+    pares++
+  }
+  console.log("Quantidade de pares: " + pares)
+  console.log("Fim do Programa")
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*
+MÉTODO MAP:
+
+O método map é um tipo de loop ideal para pecorrer um array e *transformar os dados* desse array, quando você quer um *novo array sem mexer
+no original* e *quando o resultado do map é usado*. Quando você só quer fazer algo, ele não é o ideal. Se você quer gerar algo novo, ele
+é execelente.
+
+Exemplo 1:
+
+const numeros=[1,2,3,4]
+const dobrados=numeros.map{n=>n*2}
+
+Esse exemplo simples é para que você entenda o seguinte. Aqui ele transforma os dados, multiplicando eles, sem mexer no original porque
+ele cria um novo array com os dados multiplicados. Sem o map você ia ter que cria um array vazio, dar push e controlar o índice, enquanto
+o map faz tudo de forma declarativa.
+
+*/
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+</script>
+<body>
+    
+</body>
+</html>

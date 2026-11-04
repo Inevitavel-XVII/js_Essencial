@@ -1,0 +1,375 @@
+<html>
+    <script>
+        /*
+        
+        **OPERADOR THIS E COMO FUNCIONA**
+        - perguntas que fiz enquanto estudava sobre this
+          . O que é o operador this
+          . Qual a relação do this com uma arrow function
+          . Por que o this em uma função comum se comporta diferente de quando está sendo declarado em uma arrowfunction?
+          . Por que setTimeout chama a função sem contexto, sendo que ela está sendo declarada dentro da const pessoa?
+          . Por que armazenar o this em uma variável ia resolver o problema?
+          . Qual a relação do bind e this?
+          . Como usar o bind?
+          . Por que nesse código uma função o this funciona e na outra funlção ocorre diferente?
+          
+          No JavaScript, this é uma palavra-chave que faz referência ao objeto de contexto e seu valor muda dependendo de como e onde
+          essa função é chamada.
+
+          **EXEMPLOS DE COMPORTAMENTO DO 'THIS'
+
+          1. No escopo global(modo não estrito)
+
+          console.log(this); // No navegador, isso retorna objeto 'window'
+
+          2. Dentro de um objeto - MELHOR MANEIRA DE SE USAR O THIS
+
+          c // "Ana"
+
+          3. Função isolada
+
+          function teste(){
+           console.log(this)
+          }
+        
+          teste() 
+          // No modo estrito: 'window' (navegador) ou 'global' (Node.js)
+          // No modo estrito: undefined
+
+          O this dentro de uma função isolada retorna undefined, no modo estrito, porque a função não está dentro de um objeto?
+
+          **RESPOSTA DO GPT**
+
+          Sim, no modo estrito ("use strict"), o 'this' dentro de uma função isolada é 'undefined' porque a função é chamada sem
+          um contexto de objeto.
+          
+          'THIS' É DEFINIDO NA CHAMADA DA FUNÇÃO, NÃO NA DEFINIÇÃO - haverá exemplos e argumentos abaixo que sustentam essa
+          afirmação.
+
+          No 1° código desse exemplo a função foi chamada diretamente, sem objeto antes do ponto. No modo estrito o resultado é
+          undefined, se não for, será window. O modo estrito remove esse comportamento para evitar bugs.
+
+          Abaixo haverá exemplos de quando o 'this' não é undefined
+
+          --1 função chamada como método:
+
+          "use strict";
+
+            const obj = {
+            nome: "Carlos",
+            falar() {
+                console.log(this.nome);
+            }
+            };
+
+            obj.falar(); // Carlos
+
+            -- a chamada foi obj.falar()
+            -- O this é o objeto à esquerda do ponto
+
+
+          4. Arrow Function
+          
+          const obj = {
+            nome: "Carlos",
+            dizer: () => {
+                console.log(this.nome);
+            }
+            };
+
+          obj.dizer(); // undefined
+          
+          Nesse código acima o resultado é undefined,pois arrowfunction não possui o própio 'this'. O arrowfunction não possui
+          o própio 'this', eles herdam o 'this' do escopo onde foram definidos. Nessa situação, você deveria mudar o arrowfunction
+          para uma função comum ou usar o arrowfunction dentro de outra função comum. Há um exemplo abaixo de como resolver o problema.
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------
+          **EXEMPLO DO TÓPICO 4**
+          const obj = {
+            nome: "Carlos",
+            dizer() {
+                console.log(this.nome);
+            }
+            };
+
+            obj.dizer(); // Carlos
+          OU VOCÊ PODE ESCREVER  
+
+//------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+          **RESUMO PRÁTICO**
+
+          Como a função é chamada:                            Valor do 'this':
+
+          -objeto.método()                                     -objeto
+
+          -funcaoSozinha()                                     -window (não estrito) ou undefined (estrito)
+
+          -Com .call, .apply(), bind                           -O valor passado
+
+          -Arrow Function                                      -'this' çexico( do escopo onde foi definida)
+
+        */
+        //**EXEMPLO 1**
+        function aluno(nome,nota){
+            this.nome=nome
+            this.nota=nota
+
+            this.dados_anonimo=function(){
+                setTimeout(function(){       
+                    console.log(this.nome)
+                    console.log(this.nota)
+                },2000)
+            }
+
+            this.dados_arrow=function(){
+                setTimeout(()=>{
+                    console.log(this.nome)
+                    console.log(this.nota)
+                },2000)
+            }
+        }
+        
+        const al1=new aluno ("Bruno",100)
+        al1.dados_anonimo()
+        al1.dados_arrow()
+        
+
+        
+        // **EXEMPLO 2**
+
+        const pessoa = {
+        nome: "Maria",
+        mostrarNomeFuncaoComum: function() {
+            setTimeout(function() {
+            // Numa função comum, `this` aqui seria `window` (ou `undefined` em modo estrito),
+            // não o objeto `pessoa`.
+            console.log(`Meu nome é ${this.nome}.`); // undefined
+            }, 1000);
+        },
+
+        /*
+        Nessa primeira função, o 'this' é undefined porque ele está sendo usado dentro de setTimeout e ela não oferece
+        um contexto para this. Isso acontece também com funções dentro de outras funções quando o 'this' é usado dentro delas.
+        Entretanto, há uma forma de contornar essa situação usando o bind, associando o this à uma variável ou usando um arrowfunction.
+        */
+        //EXEMPLO 1 - ArrowFunction ()=>
+        /*
+        arrowFunction são ideiais para quando você não quer que o 'this' mude
+        */
+        mostrarNomeArrowFunction: function() {
+            setTimeout(() => {
+            // A arrow function herda o `this` de `mostrarNomeArrowFunction`,
+            // que é o objeto `pessoa`.
+            console.log(`Meu nome é ${this.nome}.`); // Maria
+            }, 1000);
+        }
+        };
+
+        pessoa.mostrarNomeFuncaoComum();
+        pessoa.mostrarNomeArrowFunction();
+
+
+        //EXEMPLO 2 - Guarda 'this' em uma váriavel (padrão antigo)
+        /*
+        Quando você for usar o o self=this é necessário que seja escrito no escopo onde você quer capturar o 'this',
+        antes dele perder a referência - ou onde ele ia mudar. Com arrow function, essa técnica geralmente não é 
+        necessária.
+        */
+        // const pessoa = {
+        //     nome:"Maria",
+        //     mostrarNomeFuncaoComum: function(){
+        //         const self = this;
+        //         setTimeout(function(){
+        //             console.log(`Meu nome é ${self.nome}.`);
+        //         },1000)
+        //     }
+        // }
+        
+        //EXEMPLO 2.1 Usando o self=this
+
+        // function MeuObjeto() {
+        // this.nome = "ChatGPT";
+
+        // var self = this; // Preserva o contexto do this
+
+        // function saudacao() {
+        //     console.log("Olá, " + self.nome); // Usa self em vez de this
+        // }
+
+        // saudacao();
+        // }
+
+        // new MeuObjeto();
+
+
+        // pessoa.mostrarNomeFuncaoComum() // 'Meu nome é Maria'
+
+        //3. Usar o .bind(this) para força o contexto
+
+        // const pessoa= {
+        //     nome:"Maria",
+        //     mostrarNomeFuncaoComum: function(){
+        //         setTimeout(function(){
+        //             console.log(`Meu nome é ${this.nome}.`);
+        //         }.bind(this),1000)
+        //     }
+        // };
+        
+        // pessoa.mostrarNomeFuncaoComum(); // Meu nome é Maria.
+
+        //3.1 Usando bind dentro de uma função que está dentro de outra função, sem o uso de arrowfunction
+
+        // const pessoa = {
+        // nome: "Maria",
+        // saudacao: function() {
+        //     function mensagem() {
+        //         console.log(`Olá, meu nome é ${this.nome}.`);
+        //     }
+
+        //     // Usando .bind(this) para garantir que 'this' se refira ao objeto 'pessoa'
+        //     const mensagemComBind = mensagem.bind(this);
+        //     mensagemComBind(); // chama a função mensagem, dentro da função saudação
+        // }
+        // };
+
+        //     pessoa.saudacao(); // chama a função saudação usando a variável, ponto e método com seus parâmetros 'pessoa.saudação()'
+//------------------------------------------------------------------------------------------------------------------------------------------------
+        // **COMO USAR CALL, BIND E APPLY?**
+        /*
+        1.call()
+        Chama a função imediatamente, definindo o this e passando os argumentos separados por vírgula.
+        
+        Sintaxe:
+        função.call(this, argumento1, argumento2)
+        
+        Exemplo:
+        function apresentar(saudação, idade){
+         console.log(`${saudação}, meu nome é `${this.nome} e tenho `${idade} anos`);
+        }
+        const pessoa = {nome: 'Carlos'};
+
+        apresentar.call(pessoa,"Olá", 30)
+        => Olá, meu nome é Carlos e tenho 30 anos
+//------------------------------------------------------------------------------------------------------------------------------------------------
+        2.apply()
+        -2.1. É parecido com o 'call', mas a diferença principal é a forma de passar os métodos
+        
+        -2.2. A apply() funciona como o call, mas aceita os argumentos como um array. Isso é otimo
+        em objetos que são idênticos a um array.
+        
+        -2.3. Você também pode pegar o método existente em um objeto e aplicar ele a outro objeto.(Method Borrowing)
+
+        Sintaxe:
+        função.apply(this, [argumento 1, argumento 2, argumento 3])
+        Primeiro Parâmetro = this
+        Segundo Parâmetro = array com os argumentos
+
+        EXEMPLO 1: EXEMPLO SIMPLES DE APPLY() COM RESULTADO IMEDIATO EM FORMATO DE ARRAY.
+
+        function saudacao(mensagem){
+           console.log(mensagem + ',' + this.nome);
+        }
+        const pessoa= {
+           nome: "Ana"
+        }
+        
+        saudacao.apply(pessoa, ["Olá"]);
+
+        Olá, Ana
+
+        EXEMPLO 2: USANDO O MÉTODO DE UM OBJETO EM OUTRO OBJETO.
+
+        const pessoa = {
+            nome: 'Ana',
+            saudar: function(saudacao, pontuacao) {
+                console.log(`${saudacao}, meu nome é ${this.nome}${pontuacao}`);
+            }
+            };
+
+        const outraPessoa = {
+            nome: 'Carlos'
+            };
+
+        // Usa o método de 'pessoa' para 'outraPessoa'
+        // 'this' passa a ser 'outraPessoa'
+        pessoa.saudar.apply(outraPessoa, ['Olá', '!']);
+        // Saída: "Olá, meu nome é Carlos!"
+//------------------------------------------------------------------------------------------------------------------------------------------------
+        Comparando com call()
+
+        call() - Argumentos Separados
+        saudacao.call(pessoa, "Olá");
+
+        apply() - Argumentos em Array
+        saudacao.aplly(pessoa,["Olá"]);
+
+//------------------------------------------------------------------------------------------------------------------------------------------------        
+
+        Reaproveitando funções:
+
+        function soma(a,b){
+          return a + b;
+        }
+        
+        const numeros = [2, 5];
+        console.log(soma.apply(null, numeros)); // 7
+
+        - this não foi usado, então o valor passado é o null
+        - os valores vem de um array
+
+//------------------------------------------------------------------------------------------------------------------------------------------------        
+        
+        3.bind()
+        
+        O valor do this depende de como a função é chamada, não de onde ela foi definida.
+        O bind é ideal para callbacks e eventos(addEventeListenner)
+        
+        //------------------------------------------------------------------------------------------------------------------------------------------------        
+
+        LEMBRETE: CALLBACK SÃO FUNÇÕES ASSÍCRONAS - chamada de API, leitura de arquivos ou eventos do usuário.
+        ELES GARANTEM QUE O CÓDIGO ESPERE UMA TAREFA TERMINAR ANTES DE CONTINUAR.
+        
+        EXEMPLOS DE CALLBACKS: setTimeout, fetch.
+        
+        //------------------------------------------------------------------------------------------------------------------------------------------------        
+
+
+        Isso causa muitos problemas comuns, especialmente em:
+
+        .callbacks
+        .eventos
+        .métodos passados com referência
+
+        EXEMPLO COM CALLBACKS:
+
+        const pessoa = {
+         nome:"Ana",
+         falar(){
+         console.log(this.nome);
+         }
+        };
+
+        setTimeout(pessoa.falar.bind(pessoa),1000) --- aqui está sendo usando como callback
+        
+        EXEMPLO COM EVENTOS: addEventListener()
+
+        const contador = {
+         total:0,
+         incrementar (){
+           this.total++;
+           console.log(this.total);
+         }
+        };
+
+        const botao = document.getElementById("btn");
+        botao.addEventListener("click", contador.incrementar.bind(contador));
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+        */
+        
+    </script>
+</html>

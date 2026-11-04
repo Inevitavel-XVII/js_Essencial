@@ -1,0 +1,43 @@
+<html>
+    <meta charset="UTF-8"/>
+    <script>
+        /*
+         //
+        console.log({ propiedade: "valor"})
+
+        console.log({
+            nome: "Felipe",
+            idade: 40,
+            endereço: {
+                lagradou: "Av",
+                rua:"Central",
+                bairro:"Jardim do Céu",
+            },
+        })
+         //   
+        Objetos são tipos de variável que pode ser acrescentado propiedades e funções.
+        Na linha o "valor" pode ser de qualquer tipo das aulas anteriores.
+        
+       console.log({ propiedade: "valor"})
+       */
+        const person = {
+            nome: "Felipe",
+            age: 40,
+            address: {
+                street: "Av. Central",
+                city: "São José dos Campos",
+            },
+        }
+
+        person.name = "Pedro" // apesar de ser uma constante, você consegue manipular uma propiedade da constante usando o ".name"
+        person.haircolor = "Black" // você consogue adicionar novas propiedade dentro dessa variável constante
+
+        console.log(person)
+        console.log(person.name)
+        console.log(person.age)
+
+        console.log(
+            `${person.name} tem ${person.age} anos e reside na cidade de ${person.address.city}`
+        )
+    </script>
+</html>

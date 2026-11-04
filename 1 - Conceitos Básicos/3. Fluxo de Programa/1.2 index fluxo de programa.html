@@ -1,0 +1,135 @@
+<html>
+    <meta charset="UTF-8"/>
+    <script>
+     /*------------------------------------------------------
+    *Fluxo de programa
+
+    igual       | =
+    diferente   | !=
+    menor igual | <=
+    maior igual | >=
+    maior       | >
+    menor       | <
+    and         | &&
+    or          | ||
+    not         | !   
+    */
+   /* if -> exemplo simples 
+   console.log("Início de programa")
+   if ((!1 < 2) && 2 < 3){
+    console.log("Verdadeiro")
+   }
+   console.log("Fim de programa")
+   
+  const valor = 4
+  if( valor <= 1){
+    console.log("Condição 1")
+  } else if ( valor > 1 && valor <=2){
+    console.log("condição 2")
+  } else if( valor > 2 && valor <= 3){
+    console.log("Condição 3")
+  } else { 
+    console.log("Condição outra")
+  }
+    */
+   //------------------------------------------------------------
+   // Ternário
+   let texto = "A"
+   /*
+   if (texto = "A") {
+     valor = 10
+   } else {
+     valor = 20
+   }
+     variavel = (condição) ? if : else
+   */
+   texto == "A" ? console.log(10) : console.log(20)
+   // execução de comando via ternário
+   texto == "A" ? console.log("SE") : console.log("SENÃO")
+   console.log('encadeamento do ternário')
+   const inscritos = 2000000;
+   const premioYoutube = inscritos >= 50000000 ? 'Prêmio Rubi'      // if
+                       : inscritos >= 10000000 ? 'Prêmio Diamante'  // else
+                       : inscritos >= 1000000 ? 'Prêmio Ouro' // else
+                       : inscritos >= 100000 ? 'Prêmio Prata' // else
+                       : ''
+   /*
+   Para mais informações acesse o site:
+   https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+   */
+   //-----------------------------------------------------------------
+   // switch case
+    let colocação = 4
+    switch (colocação){
+      case 1:
+        console.log("Primeiro Lugar")
+        break
+      case 2:
+        console.log("Segundo Lugar")
+        break
+      case 3:
+        console.log("Terceiro Lugar")
+        break
+      case 4: case 5: case 6:
+        ("Premio de Participação")
+      default:
+          console.log("Não subiu ao pódio")
+        break  
+    }
+    //---------------------------------------------------------------------------
+        console.log("Restante do código / Aula de while, for, for in e for of")
+      let contadorWhile1 = 1
+      
+      // enquanto condição for verdadeira, execute...
+      while (contadorWhile1 <= 3) {
+        console.log(`executando ${contadorWhile1}`)
+        contadorWhile1++
+      }
+      console.log("Fim do Programa")
+      //------------------------------------------------------------------------
+      console.log("Aula sobre for")
+      /*
+      o a estrutura de repetição for é uma forma enxuta do formato while
+      for ( 1.condição inicial da váriavel[i=0]; 2.condição que o for continua a executar[i<3]; condição de incremento[i++] ) 
+      */
+      /*for ( let i=0; i<3; i++){
+        console.log(i)
+      }
+      console.log("Fim do código for")
+      */
+      const exemplo1 = ['João', 'Maria', 'Letícia']
+      for (let name of exemplo1){
+        console.log(name)
+      }
+      /* for of é uma forma automatizada de pecorrer objetos iterados (incluindo array, map, set,
+      o objeto arguments e assim por diante), chamando uma função personalizada com instruções a
+      serem executadas para o valor de cada objeto distinto
+      SINTAXE: 
+      FOR (variavel of iteravel) {
+         declaração
+      }
+      */
+     const exemplo2 ={
+      name: 'Rodolfo',
+      age: 33,
+      street: "Rua dos Bobos"
+     }
+     for ( let key in exemplo2){ // desse jeito fica bem simples para aprender
+      console.log(key)
+     }
+     /*for ( let key in exemplo2){
+          console.log(`${key} : ${user[key]}`) // desse jeito fica mais profissional 
+       }
+      */
+     /*
+     for in iterage sobre as propiedades enumeradas de um objeto, na ordem original da inserção.
+     O laço pode ser executado para cada propiedade distinta do objeto
+     Sintaxe: 
+     for (variavel in objeto){
+     ................
+     }
+     */
+    console.log('aula sobre for each')
+     //.
+    </script>
+</html>

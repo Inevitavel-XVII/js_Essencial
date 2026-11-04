@@ -1,0 +1,188 @@
+<html>
+    <meta charset="UTF-8"/>
+    <script>
+        /*
+        // operadores básicos;( + - * /)
+        // precedência (), *,/, +, - 
+        // media = soma dos termos / quantidade dos termos
+        const media = (10 + 10 + 10) * 3
+        console.log(media)
+        */
+       /*
+       //contadore...
+       // num = num + 1 
+       let num =0
+       // num = num +1 // 0+1
+       // num++ // 1+1 atribui, depois soma
+       // num-- // 1-1 atribui, depois subtrai
+       // ++num // soma, depois atribui
+       // --num // subtrai, depois atribui
+       console.log("num", ++num) > imprime num 1
+       console.log("num", ++num) > imprime num 2
+       console.log("num", num) > imprime num 2
+       */
+    // ---------------------------------------------------------
+    // += . -= . *= . /= -> soma, subtração, multiplicação e divisão
+   /* let num = 0
+    num += 2 // num = + 2
+    num *= 2 // num = * 2
+    console.log(num)*/
+    // -----------------------------------------------------------
+    /* Comparação 
+    Servem para comparar dois valores e/ou variáveis.
+
+    - Igual - `==`
+    - Diferente - `!=`
+    - Menor - `<`
+    - Menor igual - `<=`
+    - Maior - `>`
+    - Maior igual - `>=`
+
+    Uma comparação sempre retornará verdadeiro ou falso:
+
+    ```javascript
+    1 > 2 -> false
+    1 == 1 -> true
+    "A" == "A" -> true
+    "A" < "B" -< true
+    ```
+
+    Para variáveis:
+
+    ```javascript
+    const idade = 16
+    const limite = 18 
+
+    idade >= limite
+    ```
+    -----------------------------------------------------------------
+    *Comparação estrita (idêntico)
+    O JavaScript tenta converter dados, por isso o uso do `==` pode ocasionar problemas.
+
+    Ex:
+
+    ```javascript
+    "1" == 1
+    1 == true
+    null == undefined
+    ```
+
+    Para solucionar este problema utilizamos a comparação estrita (idêntico).
+
+    ```javascript
+    "1" === 1
+    1 === true
+    null === undefined
+    null !== undefined
+    ```
+    Para lidar com o problema do JavaScript ser uma linguagem fracamente tipada, é indicado que
+    você use a comparação estrita. Isso vai evitar instabilidade. Muita das vezes você quer fazer uma
+    comparação de um número com o outro, mas o console acaba entendo que é uma string
+    ----------------------------------------------------------------------
+    * Conceito de Falsy and True
+    O valor é considerado falso quando:
+
+    ```
+    false
+    0
+    -0
+    0n
+    ""
+    ''
+    ``
+    null
+    undefined
+    NaA
+    ```
+
+    O valor é considerado verdadeiro quando:
+
+    ```
+    true
+    {}
+    []
+    1
+    1.2
+    "0"
+    "false"
+    -1
+    -1.2
+    Infinity
+    -Infinity
+    ```
+    No JS ser falso não significa ser boleano, mas como algo a ser considerado negativo.
+    ------------------------------------------------------------------------------------
+    *Operadores lógicos
+     // or
+     console.log( false || false) // false
+     console.log( true || false) // true
+     console.log( false || true) // true 
+     console.log( true || true) // true
+
+     // and
+     console.log( false && false) // false
+     console.log( true && false) // false 
+     console.log( false && true) // false
+     console.log( true && true) // true
+
+     // 2+ e misto
+     console.log( false && false && true) // false
+     console.log( false || false || true) // true 
+     console.log( false || (false && true)) // false
+     
+     // not
+     console.log( !true ) // false
+     console.log( !(23<24) ) // false
+
+     // Resultado de uma expressão (comparação) é boleano
+     console.log(23 < 24 && "A" == "A") // true
+
+     // variáveis
+     const a = 10
+     const b = 20
+     console.log( a < b ) // true
+    */
+   // Operadores Bitwise
+//    let n1=10
+//    let n2=11
+
+//    let res = n1 & n2 --> 'and' 1+1=1, 0+0+=0 e 1+0=0 >> se tudo for positivo, será positivo. se houver pelo menos um negativo, será tudo negativo. 
+//    console.log(res) -> o valor é 10
+//----------------------------------------------
+//    let n1=10
+//    let n2=11
+  
+//    let res = n1 | n2 --> 'our' 1+1=1, 1+0=1, e 0+0= 0 >> se houver um positivo, é positivo. se não houver positivo, é negativo. 
+//    console.log(res) -> o valor é 11
+//----------------------------------------------
+//    let n1=10
+//    let n2=11
+
+//    let res = n1 ^ n2 // ---> 'XOR'  1+1=0, 1+0=1 e 0+0=0 >> se for igual é zero, se for diferente é 1
+//    console.log(res) // resultado dá 1
+// "<<" e ">>" significa que vai acrescentar valores no bit, o número define a quantidade de casas que irá aumentar ou diminuir
+// 
+//    let n1=10
+//    let res= n1 << 1 -- o número um é a quantidade de casas que vai andar
+//    console.log(res) // imprime 10. 
+//    << 1 se for as duas setas com 1, você vai estar multiplicando o valor por 2 -- você está dobrando o valor.
+//    >> 1 se for as duas setas com 1, você vai estar subtraindo o valor pela metade. 
+//     
+//------------------------------------------------------------------------------------------------
+// Pré Incremento e Pós Incremento
+let a = 5;
+let b = 10;
+
+let resultado1 = ++a + b; // a é 6, b é 10, resultado1 é 16
+let resultado2 = a++ + b; // a é 7, b é 10, resultado2 é 16 (o valor de a usado é 6)
+let resultado3 = b-- - a; // b é 9, a é 7, resultado3 é 3 (o valor de b usado é 10)
+let resultado4 = --b - a; // b é 8, a é 7, resultado4 é 1 (o valor de b usado é 9)
+
+console.log("Resultado 1:", resultado1); // Saída: 16
+console.log("Resultado 2:", resultado2); // Saída: 16
+console.log("Resultado 3:", resultado3); // Saída: 3
+console.log("Resultado 4:", resultado4); // Saída: 1
+console.log("a:", a); // Saída: 7
+console.log("b:", b); // Saída: 8
+    </script>
+</html>

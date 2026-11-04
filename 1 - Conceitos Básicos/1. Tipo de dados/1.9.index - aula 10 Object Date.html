@@ -1,0 +1,102 @@
+<html>
+    <meta charset="UTF-8"/>
+    <script>
+        /*
+        console.log(Date()) // data e hora corrente => new Date ()
+        console.log(new Date()) // data e hora corrente
+
+        console.log(new Date(2022, 3, 22)) // data específica e hora corrente
+        console.log(new Date(2022, 3, 22, 10, 20, 59)) // data e hora específica
+        */ 
+        /*
+        Em javaScript não existe um tipo de dados nativos para datas. No entanto,
+        você utiliza o objeto Date para trabalhar com datas e horas. O objeto Date
+        permite criar manipular e obter informações de datas.
+
+        Criar uma instância de Data:
+        . Para criar uma instância da data atual, você usa: Const data = New Date()
+        . Você também pode criar uma data especifica, fornecendo parâmetros como
+        ano, mês, dia, hora, minuto e segundo:
+          - const aniversario = new Date (2023, 11, 25, 15, 30, 0);
+          (25 de dezembro de 2023 15:30:00)
+          - const dataString = mew Date("2024-12-25T15:30:00");
+          (25 de dezembro de 2024, 15:30:00)
+
+        Métodos importantes do objeto Date:
+        . getFullYear(): Retorna o ano.
+        . getMonth(): Retorna o mês (0-11, onde 0 é janeiro).
+        . getDate(): Retorna o dia do mês.
+        . getDay(): Retorna o dia da semana (0-6, onde 0 é domingo).
+        . getHours(): Retorna a hora.
+        . getMinutes(): Retorna os minutos.
+        . getSeconds(): Retorna os segundos.
+        . toLocaleString(): Formata a data e hora para uma string, de acordo com a localização.
+        . toLocaleDateString(): Formata apenas a data para uma string.
+        . toLocaleTimeString(): Formata apenas a hora para uma string.
+        . getTime(): Retorna o número de milissegundos desde 1º de janeiro de 1970.
+        . setDate(dia): Define o dia do mês.
+        . setMonth(mes): Define o mês.
+        . setFullYear(ano): Define o ano.
+        . setHours(hora): Define a hora.
+        . setMinutes(minuto): Define os minutos.
+        . setSeconds(segundo): Define os segundos. 
+         */
+        /* Vídeo Aula sobre o Object Date no JavaScript, canal da Trybe
+        var data = new Date ();
+        console.log(data0) // quando a você escreve o construtor vazio, você recebe a data atual 
+        // ano, mês e dia no fuso horário zero
+        var data1 = new Date ("08/01/19") /* 
+        Uma outra forma de escrever data é passando para o construtor como parâmetro uma string representando uma
+        data que você deseja.
+        Se você escrever 01/08/19, vai imprimir 2019 de janeiro de julho. Porque o mês de janeiro é 0
+        e o mês de dezembro é onze. Além disso, no mundo a data é escrita com mês/dia/ano diferende da forma
+        como é escrito no Brasil
+        Você pode usar além da barra, como separador, "-" e "espaço"
+        
+        var data2 = new Date(2020, 9, 8, 18, 0, 0, 0);
+         Uma outra forma de instanciar um objeto date é usando um parâmetro para cada valor 
+        - new Date(ano, mês, dia, hora, minuto, segundo, milissegundo) - como exemplo ela usa
+        o dia da formatura da primeira turma da Trybe
+        Quando imprimir, através do console.log, vai mostrar 3 horas a mais de diferença por conta
+        do fuso horário. Ao invés de aparecer 18 horas, vai aparecer 21 horas
+        Desses parâmetros, apenas o ano e o mês é obrigatório. Se você não declarar os outros
+        parâmetros, eles vem padrão (tudo zerado). Apenas o dia vem um e o restante começa no zero.
+        Talvez a hora apareça "3", mas tá zerado e esse "3" é por conta do fuso horário
+         
+        console.log(data.getDate); // dia do mês
+        console.log(data.getDay); // dia da semana
+        console.log(data.getMonth); // mês do ano
+        console.log(data.getFullYear); // ano atual no formato de 4 digitos
+        console.log(data.getHours); // retorna a hora no fuso horário que você está, não no fuso horário mundial
+        console.log(data.getMinutes); // retorna o minuto
+        console.log(data.getSeconds); // retorna o segundos
+        console.log(data.getMilliseconds); // retorna os milissegundos
+        console.log(data.getTime); // retorna a quantidade de milissegundos de 1970 até a data que você escolheu
+        */
+       //------------------------------------------------------------------------------------
+       const data = new Date() 
+       /* imprime uma data padrão com varios detalhes, os códigos abaixo servem para deixar
+       mais bonito pro usuário */
+       const dia = String(data.getDate()).padStart(2 , "0") /*
+        1 -> 01 a string vai ter no máximo 2 algortimos de 1 ao 31. Se for um número de
+        de 0 ao 9, vai ser prenchido com o zero no começo( se for 1, vai ficar 01 e assim
+        por diante)  
+      */
+       /* um padStart é uma função de string, exp:
+       "Ayrton" tem 6 letras
+       console.lo('Ayrton'.padStart(10, '-'))
+       IMPRIME : ----Ayrton
+       O valor 10 é a quantidade de caracteres que a string terá, Ayrton tem apenas 6 letras.
+       Então, para completar a string é usado o '-'
+       Então se for usado o padEnd, isso vai acontecer no final
+       */
+      const mes = String(data.getMonth() + 1).padStart(2, "0") 
+      /* janeiro = 0, 3 -> 03 a string vai ter no máximo 2 algortimos de 0 ao 11. Se for um número de
+        de 0 ao 9, vai ser prenchido com o zero no começo( se for 1, vai ficar 01 e assim
+        por diante)*/
+      const ano = data.getFullYear() // 2021
+      const dataAtual = `${dia}/${mes}/${ano}`
+      console.log(dataAtual)
+      console.log(data)
+    </script>
+</html>

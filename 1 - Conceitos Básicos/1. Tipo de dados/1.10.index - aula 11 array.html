@@ -1,0 +1,77 @@
+<html>
+    <meta charset="UTF-8"/>
+    <script>
+        /*
+        console.log([1, 2, 3]) // arrays simples
+        console.log([1, "a", "b"]) // arrays compostas
+        console.log([1, "a", {nome:"felipe", sobrenome: "Fantoura"}]) // arrays complexas
+        */
+       //---------------------------------------------------------------------------
+       // Variável + índice (que sempre inicia do 0)
+       // const persons = ["Felipe", "Ana", "Paulo"]
+        const persons = [
+        { name: "Felipe", age: 40},
+        { name: "Ana", age: 35},
+        { name: "Paulo", age: 22},
+        // "Zé", // não seria uma boa prática (misturar tipos dentro do array)
+       ]
+       persons[0] = "Zé"
+        // persons[999 = "Zé" // não seria uma boa prática (está fora do rande dos índices)
+
+        console.log(persons[0])
+        console.log(persons[1])
+        console.log(persons[2])
+        console.log(persons[3])
+
+        console.log(persons.length) 
+        /*
+                                    [Material pegado da IA do google]
+                                    
+        Em JavaScript, length é uma propriedade de um array que retorna ou define o número de elementos 
+        que ele contém. É uma maneira simples e eficaz de obter o tamanho do array e, em alguns casos, 
+        modificar o seu tamanho. 
+        Como usar a propriedade length:
+        Obtendo o tamanho: Para obter o tamanho de um array, você acessa a propriedade length do array. Por exemplo: 
+        -----JavaScript
+
+            const meuArray = [1, 2, 3, 4, 5];
+            const tamanho = meuArray.length;
+            console.log(tamanho); // Output: 5
+        Modificando o tamanho: Você pode alterar o tamanho do array definindo um novo 
+        valor para a propriedade length. Isso pode reduzir ou aumentar o tamanho do array, 
+        mas não modifica diretamente os elementos existentes:
+        ------JavaScript
+
+            const meuArray = [1, 2, 3, 4, 5];
+            meuArray.length = 3; // Reduz o tamanho para 3
+            console.log(meuArray); // Output: [1, 2, 3]
+        Se você aumentar o tamanho do array definindo um length maior que o atual, os novos "espaços"
+        (índices) serão preenchidos com undefined.
+        ------JavaScript
+
+            const meuArray = [1, 2, 3];
+            meuArray.length = 5; // Aumenta o tamanho para 5
+            console.log(meuArray); // Output: [1, 2, 3, undefined, undefined]
+        Outras formas de usar length:
+        Iteração em arrays: length é frequentemente usado em loops para iterar sobre os elementos
+        de um array, pois ele fornece o limite superior do índice.
+        ------JavaScript
+
+            const meuArray = [1, 2, 3, 4, 5];
+            for (let i = 0; i < meuArray.length; i++) {
+                console.log(meuArray[i]);
+            }
+        Verificação de arrays vazios: Você pode verificar se um array está vazio verificando se length é igual a 0:
+        -------JavaScript
+
+            const meuArray = [];
+            if (meuArray.length === 0) {
+               console.log("O array está vazio.");
+            }
+        Em resumo:
+        A propriedade length é fundamental para trabalhar com arrays em JavaScript, fornecendo
+        informações sobre o tamanho do array e facilitando a manipulação e iteração dos seus 
+        elementos. É uma ferramenta essencial para o desenvolvimento em JavaScript.
+        */
+    </script>
+</html>

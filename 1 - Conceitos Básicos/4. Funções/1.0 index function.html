@@ -1,0 +1,514 @@
+<html>
+    <meta charset="UTF-8"/>
+    <script>
+
+        function nome(){ // nome() -> declaração da função 
+          console.log("CFB Cursos") // imprime "CFB Cursos"
+        }
+        nome() // chamada da função
+        /*
+        - É um bloco de comandos que pode ser executado em um momento oportuno
+        - "()" no parentese é onde fica os parâmetros da função, para ela poder
+         operar - função parametrizada
+        */
+       function nome(){
+        console.log("CBF Cursos")
+       }
+       for (let i=0; i<10;i++){ // esse loop vai fazer a função ser chamada 10x, sem a necessidade de digitar a chamada
+        nome()                  // da função dez vezes de forma manual
+       }
+      //----------------------------------------------------------------------------------------------------
+       function soma2_10(){ // essa função vai fazer a soma das variáveis n1 e n2 
+        let n1=2
+        let n2=10 
+        let soma=n1+n2
+        console.log(soma)
+       }
+
+       for (let i=0;i<=10;i++){ // esse loop for vai chamar a função som2_10 10 vezes
+        soma2_10()
+       }
+      //-----------------------------------------------------------
+      //Funções com retorno->
+      function canal(){
+        let n1=10
+        let n2=2
+        let rest=n1*n2
+        if (rest%2==0)
+           return "Par" // o objetivo do return é finalizar a função e especificar os valores que devem ser retonados para onde a função foi chamada.  
+        else 
+           return "Impar"
+      }
+      let res=canal() // aqui você está armazenando o retorno da função canal na variável res
+      console.log(res) // aqui você está imprimindo a váriavel let res
+      // console.log(canal()) // aqui você não está armazenando em nenhuma variável o return, apenas imprimindo na tela a function canal ()
+      // canal() // aqui você não está armazenando em nenhuma variável o return, apenas imprimindo na tela a function canal () -> você está chamando a função
+      //-----------------------------------------------------------------------
+      // usando operador térnario e função arrow
+      // Versão com parâmetros (para ser mais flexível):
+      const parOuImpar = (n1, n2) => ((n1 * n2) % 2 === 0 ? "Par" : "Impar");
+
+      console.log(parOuImpar(5, 7)); // "Impar"
+      console.log(parOuImpar(4, 2)); // "Par"
+      //------------------------------------------------------------------------
+      const exmplo1 = () => (5 * 7 % 2 === 0 ? "Par" : "Impar");
+
+      console.log(exemplo1()); // Vai imprimir "Impar"
+      //------------------------------------------------------------------
+      //Funções Parametrizadas
+      const VALORPADRAO=0 // criando uma variável com valor zero, se por acaso, haja a situação de haver apenas um valor definido na hora de chamar a função.
+      function soma(n1=VALORPADRAO,n2=VALORPADRAO){ // Dessa forma, não fica indefinido caso haja apenas um paramêtro na chamada da função.
+        let res = n1+n2
+        return res
+      }
+      let resultado_Soma=soma(5)
+      console.log(resultado_Soma)
+      //---------------------------------------------------------------------
+      // parametros rest
+      // O parametro rest (representado por "..." antes do nome de um parâmetro) permitem que uma função receba um número indefinido
+      // de argumentos como um array. Isso facilita o trabalho com funções que precisam receber uma quantidade variável de entrada
+      // sem precisar especificar cada uma delas
+      function soma (...valores){
+        let tam=valores.length
+        let res=0
+        for(let i=0; i<tam; i++){
+          res+=valores[i]
+        }
+        return res
+      }
+      const resultado200=soma(10,5,2)
+      console.log(resultado200)
+      //------------------------------------------------------------------------------------
+      //funções anônimas
+      const f=function(v1,v2){
+        return v1+v2
+      }
+      console.log(f(10,5))
+      //funcôes construtoras anônimas
+      const f1=new Function("v1","v2","v3","return v1+v2+v3") // o último parâmetro será o corpo da função, aquilo que será executado
+      console.log(f1(10,5,2))                                   // precisa ser algo resumido. Esse é o objetivo.
+//*******************************************************************************************************************************************
+      //-----------------------------------------------------------------------------------------------------------
+      // Arrow function -> São funções anônimas que usam "=>" no lugar do function
+      const soma3=(v1,v2)=> {
+        let res=v1+v2
+        return res
+      }
+      console.log(soma3(10,5))
+
+      const nome4=n=>n
+      console.log(nome("Bruno"))
+
+      const add=n=>n+10
+      console.log(add(10))
+      //-----------------------------------------------------------------------------------------------------------
+
+       
+
+
+      //-----------------------------------------------------------------------------------------------------------
+      /*
+      Existem 5 tipos de funções
+      -Function declaration (função de declaração)
+      -Function expression (função de expressão)
+      -Arrow Functions (função de flecha)
+      -Function constructor (função construtora)
+      -Generator Function (função geradora)
+
+      **Function Declaration**
+      O jeito mais básico de definir funções em JavaScript é através da function declaration. Toda função de declaração começa com a palavra
+      reservada e obrigatória function, seguida pelo nome da função (também obrigatório), uma lista de parâmetros (opcionais) separados por vírgulas,
+      encapsulados em parenteses (obrigatórios), o último passo é definir as chaves (obrigatórias) que será o corpo da função.
+      ***********************************************************************************************************************************************
+      A estrutura seria da seguinte maneira:
+      function nome(parâmetro){chaves}
+      function nome(parâmetro1, parâmetro2){chaves}
+      Essa é a função mais simples, porém, obrigatória para as function declaration.
+      ***********************************************************************************************************************************************
+      Você também pode declarar uma função dentro de outra função
+      EXEMPLO 1:
+
+      function ola() {
+        console.log('Olá')
+      }
+      ola()
+
+      function ola() {
+       function mensagem() {
+        return 'Olá'
+        }
+          console.log(mensagem())
+      }
+      ola()
+
+      function ola() {
+       function mensagem() {
+          return 'Olá'
+        }
+          console.log(mensagem())
+      }
+      ola()
+
+          console.log(mensagem()) // a função mensagem não irá existir nesse trecho de código, ela somente existe dentro da função ola
+
+      function ola(nome) {
+           console.log('Olá', nome)
+      }
+      ola('Matheus')
+      ***********************************************************************************************************************************************
+      **Function expression**
+      As funções de expressão e declaração são parecidas, a diferença é que a função de expressão pode ser escrita de forma parecida 
+      como qualquer outra expressão no javascript
+      EXEMPLO:
+
+      const nome="Matheus"
+
+      Neste exemplo é criado uma expressâo onde é definido uma variável chamada de 'nome' e é atribuido à ela o valor string
+      Com uma função de expresão é possível faze algo semelhante:
+
+      const ola= function() {
+      console.log('Olá')
+      }
+      ola()
+      A diferença está no fato de que funções de expressão são atribuidas à uma variável.
+
+      const name= function (parametro1,parametro2) {}
+
+      --EXTREMAMENTE IMPORTANTE--
+      **********
+      Atribuindo uma função à uma variável, você está definindo essa função exatamente onde ela precisa ser chamada - dessa forma, ela será
+      útil apenas naquele lugar -.
+
+      Embora funções anônimas possam ser úteis em certas situações, como em expressões lambda ou funções de retorno de chamada, o uso excessivo
+      pode tornar o código mais difícil de depurar e manter, especialmente em projetos maiores e mais complexos - DEPURAR SIGNIFICA
+      ("por que funções anônimas dificulta a depuração do código?") - pesquisar no chatgpt ou google 
+      ************
+      ***********************************************************************************************************************************************
+      **arrow function**
+      O principal objetivo do uso do arrow function em js é proporcionar uma sintaxe mais concisa e legível para a definição de funções.
+      EXEMPLO SIMPLES
+      
+      --- usando função anônima, atribuindo ela à variável ---
+      const numeroAleatorio= function (){
+         return Math.random()
+      }
+      --- usando arrow function ---
+      const numeroAleatorio= ()=> {
+         return Math.random()
+      }
+      --- usando arrow function, sem o uso do return e sem o uso das chaves ---
+      const numeroAleatorio= () => Math.random() // -> isso acontece porque tudo foi escrito em uma única linha
+      ***********************************************************************************************************************************************
+
+      **função construtor***
+      Antes de você entender sobre função construtora, é necessário que você entenda sobre instâncias e objetos.
+      Um objeto em JavaScript é uma coleção de pares chave-valor, onde a chave é o identificador(string ou symbol) e o valor é um tipo de dado (number,
+      string, booleano, outro objeto ou função). A um objeto também é uma estrutura de dados com outros objetos ou funções dentro, cada propiedade dentro
+      desse objeto é separado por vírgula e ficam dentro de uma chave '{}'
+      **EXEMPLO**: 
+      
+      let meuObjeto={
+        chave1 : 'valor1',
+        chave2 : 123,
+        chave3 : true,
+        metodo: function{
+            console.log("Olá");
+              }
+      }
+      **EXEMPLO 2**
+        let perfilUsuario = {
+          nome: "Ana",
+          idade: 30,
+          ativo: true,
+          hobbies: ["ler", "pintar"],
+          saudar: function() {
+            console.log(`Olá, eu sou ${this.nome}!`);
+          }
+        };
+    **ACESSAR PROPIEDADES DE UM OBJETO**
+        Notação Ponto (.):
+          Permite acessar uma propiedade de um objeto, por exemplo,
+          perfilUsuario.nome
+        Notação de Colchetes([]):
+          Uma forma alternativa de acessar propiedades, especialmente útil quando o nome da chave é uma variável, 
+          por exemplo, perfilUsuario["idade"]
+
+      Se houver à necessidade de criar outra estrutura de dados para outro usuário, você ia precisar reescrever tudo de novo. Portanto, é por esse motivo
+      que a função construtora existe. Quando você cria uma função contrutora que vai servir como molde para outros objetos que vão herdar as propiedades da
+      função, você vai estar facilitando sua vida e evitando o trabalho de reescrever tudo de novo.
+************************************************************************************************************************************************************
+      Em js, uma instância é um objeto específico e individual criado a partir de um molde (uma classe ou função construtora), que detém seus própios
+      dados (atribuidos)e comportamentos(métodos) *funções dentro de objetos*. Pense na classe como um molde de um carro e nas instâncias como se fosse
+      os carros que serão criados em um linha de produção (ou seja, muitos carros), todos os carros criados terão o mesmo molde (classe).
+
+      1- Classes(modelo)
+      Primeiro, é criado uma classe ou função construtora, que é o modelo que descreve as características e os comportamentos de todos os objetos
+      desse tipo.
+      
+      2- Operador new:
+      Para poder criar uma instância, é necessário usar o operador 'new', seguido pelo nome da classe ou função construtora
+      Quando você usa o operador new com a função construtora, como o new cachorro, você está dizendo para o javascript para :
+
+      . Criar um objeto vazio
+      . Definir o contexto 'this' dentro da nova função como sendo esse objeto recém-criado
+      . Executar o código da função construtora, que adiciona propiedades e métodos a este objeto usando o 'this' (ex:this.nome = nome)
+      . Retornar o objeto recém-criado e preenchido.
+
+      3- Instância: 
+      O objeto que resulta dessa execução é uma instância da função construtora. Cada instância é um objeto único, com seus própios dados,
+      mas com a mesma estrutura e comportamento definidos pela função construtora.
+      **EXEMPLO**
+      // 1. Defina a função construtora (começando com letra maiúscula)
+      function Pessoa(nome, idade) {
+        this.nome = nome; // Atribui o nome passado ao objeto
+        this.idade = idade; // Atribui a idade passada ao objeto
+        this.saudacao = function() { // Define um método para o objeto
+          console.log(`Olá, meu nome é ${this.nome} e tenho ${this.idade} anos.`);
+        };
+      }
+
+      // 2. Use a palavra-chave 'new' para criar instâncias (objetos)
+      let pessoa1 = new Pessoa("Ana", 30);
+      let pessoa2 = new Pessoa("João", 25);
+      O 'this' na variável pessoa1 e o 'this' da variável pessoa2 recebem o molde da functio Pessoa, entretanto cada um pertence a variável que está associado.
+      Eles vem do mesmo molde, mas são diferentes um do outro.
+
+      // 3. Use as instâncias (objetos) criados
+      console.log(pessoa1.nome); // Saída: Ana
+      pessoa2.saudacao(); // Saída: Olá, meu nome é João e tenho 25 anos.
+      
+
+      **POR QUE CRIAR UMA FUNÇÇÃO CONSTRUTORA?**
+
+      . Reutilização de código: permite criar vários objetos com a mesma estrutura sem repetir o código
+      . Padronização: Garante que todos os objetos criados a partir dela tenham as mesma propiedades e métodos, mantendo o código
+      organizado e flexível.
+      . Eficiência: Em JavaScript, os métodos definidos na função construtora podem ser compartilhados entre as intâncias através do protótipo
+      ***********************************************************************************************************************************************
+      **FUNÇÃO GERADORA**
+      /*
+      Para que você entenda sobre função geradora, é necessário entender sobre função declarativa. Uma função declarativa é o exemplo mais simples sobre
+      funções em JavaScript. Ela tem o padrão de ser escrita 'function nome(paramêtros){corpo da função}', os parâmetros recebem o valor dos argumentos
+      que são definidos no momento que a função é chamada. Esses parâmetros recebem os valores dos argumentos, no momento da chamada da função, e se com-
+      portam como variáveis locais da função. Dessa forma eles serão usados de acordo com o código que está escrito no escopo da função.
+
+      - Importância dos parâmetros:
+      
+      .Flexibilidade: Permitem que a mesma função realize diferentes ações com base nos dados que recebe.
+      .Reutilização: Evitam que você tenha que escrever o mesmo código várias vezes para diferentes valores.
+      .Modularidade: Tornam o código mais organizado, isolando a lógica da função **EXTREMAMENTE IMPORTANTE ESSE CONCEITO**
+      
+      Exemplo de uma função declarativa:
+      
+      function teste(x,z){
+          return x+z
+      }
+      console.log(teste(5,2))
+
+      **Nesse exemplo você pode entender que uma função declarativa é um bloco de código que pode ser usado sempre que você chama-lo, com um argumento,
+      dessa forma você não precisa reescrever o mesmo código para situações parecidas e economizando linha. Em uma função declarativa, o código pre-
+      sente dentro do escopo da função é executado tudo de uma vez, mas em uma função geradora isso ocorre de forma diferente. Uma função geradora em
+      JavaScript, definida com function* - sua sintaxe, retorna um objeto iterador em vez de um valor imediato - ou seja, retorna por partes. Ela 
+      permite que a execução seja pausada (com yield) e retomada, salvando seu estado para entregar valoroes sob demanda. ***Isso a torna ideal para 
+      gerenciar grandes volumes de dados ou operações assícronas, pois a função não precisa ser executada tudo de uma vez*****.
+      
+      **O que é um objeto iterador? // dúvida que surgiu na mente e achei importante pesquisar sobre
+
+      Em JavaScript, um objeto gerador é um tipo especial de iterador retornado por uma função geradora. Ele permite que a execução de uma função seja pausada
+      e retomada a qualquer momento através da palavra-chave yield, mantendo o estado da função entre as retomadas. Esse objeto possui o método next(), que 
+      inicia ou continua a execução da função geradora e retorna um objeto com as propiedades value e done.
+
+      **CASOS DE USO**
+
+      -Iteradores Personalizados: 
+      Para criar iteradores que geram uma sequência de valores personalizados.
+      -Tratamento de Dados em 'larga escala':
+      Para gerar dados 'sob demanda' sem carregar toda a coleção na memória de uma só vez.
+      -Programação Assícrona:
+      Podem ser usadas para simplificar o código assíncrono.
+
+
+      */
+     //**********************************************************************************************************************************************
+     //exemplo 1
+     function* cores(){
+      yield 'Vermelho'  // cada yield pausa a execução e produz um valor para o chamador, aqui é retornado o valor 'vermelho'.
+      yield 'Verde'     // cada yield pausa a execução e produz um valor para o chamador, aqui é retornado o valor 'verde'.
+      yield 'Azul'      // cada yield pausa a execução e produz um valor para o chamador, aqui é retornado o valor 'azul'.
+     }
+
+     const itc=cores() // aqui você está associando a função à uma variável. A variável torna-se o objeto iterador.
+     console.log(itc.next().value) // aqui você usa o objeto iterador e o método 'next()', essa primeira chamada é para iniciar o processo.
+     console.log(itc.next().value) // aqui você usa o objeto iterador e o método 'next()', retorna o valor Vermelho.
+     console.log(itc.next().value) // aqui você usa o objeto iterador e o método 'next()', retorna o valor Verde.
+     console.log(itc.next().value) // aqui você usa o objeto iterador e o método 'next()', retorna o valor Azul.
+     //**********************************************************************************************************************************************
+     //exemplo 2
+      function* perguntas(){
+        const nome=yield 'Qual o seu nome?' // vai retornar a string
+        const esporte=yield 'Qual o seu esporte favorito?' // vai retorna a string
+        return "Seu nome é " + nome + ", seu esporte favorito é " + esporte // vai retornar a string, mas com as variáveis nome e esporte
+                                                                            // com os valores do objeto iterador
+      }
+
+      const itp=perguntas()
+      console.log(itp.next().value) // a primeira chamada do gerador dever ser sempre feita sem argumento, para iniciar o processo ***
+      console.log(itp.next('Bruno').value)
+      console.log(itp.next('Natação').value)
+      //**********************************************************************************************************************************************
+     //exemplo 3
+
+      /*
+      ***********************************************************************************************************************************************
+      ***Função dentro de outra função***
+      const soma=(...valores){
+          const soma=val=>{
+          let res=0
+          for( v of val){
+             res+=v
+          return res
+          return somar(valores)
+          return soma(...valores)
+      }
+      }
+      */
+     // função dentro de função****
+    //  const soma22=(...valores)=>{
+    //     const somar=val=>{
+    //     let res22=0
+    //     for (v of val){
+    //     res22+=v
+    //     }
+    //     return res22
+    //     }
+    //     return somar (valores)
+    //  }
+    //  console.log(soma22(10,5,15))
+    
+    //*A FUNÇÃO DE BAIXO É EXATAMENTE A MESMA DE CIMA. ENTRETANTO ESTÁ SENDO USADO DESSA FORMA PARA MOSTRAR QUE ELA PODE SER 
+//ESCRITA DE OUTRA FORMA FORA DA FUNÇÃO
+    const somar=val=>{
+        let res22=0
+        for (v of val){
+        res22+=v
+        }
+        return res22
+        }
+    const soma22=(...valores)=>{
+        return somar (valores)
+     }
+     console.log(soma22(10,5,15))
+//*****************************************************************************************************************************
+/*  **FUNÇÃO MAP**
+- O que é uma função map?
+ O método 'map()' é invocado a partir de um array e recebe como parâmetro uma função de callback, que é invocada para cada item e retorna
+ o valor do item equivalente no array resultante.
+
+**ESTRUTURA DE UMA FUNÇÃO MAP**
+
+const numeros = [1, 2, 3, 4]; -> array que será usado pelo método map
+
+const numerosDobrados = numeros.map(function(numero) { 
+  return numero * 2;
+});
+
+console.log(numerosDobrados); // Saída: [2, 4, 6, 8]
+
+A const numeros foi associado a const numerosDobrados. Quando você for escrever o método map, você precisa escrever o nome 
+da array + '.map(função (callback){escopo}' -
+
+.Dentro do callback haverá apenas 3 parâmetros existentes que o método map pode trabalhar. 
+
+1° Valor (obrigatório, é o primeiro parâmetro a ser escrito)
+- O Valor do elemento original do Array de origem
+
+2° Índice (não é obrigatório, é o segundo parâmetro a ser escrito)
+- O Índice do elemento atual que está sendo processado no Array
+
+3° Array (não é obrigatório, é o terceiro parâmetro a ser escrito)
+- O Array de origem
+
+Fora isso, não há outros parâmetros disponíveis automaticamente.
+
+Você pode, é claro, acessar variáveis externas (fora do map) ou criar funções auxiliares, mas em termos de parâmetros
+que o map fornece nativamente, são só esses três.
+*/
+//**EXEMPLO**
+const nomes = ['Ana', 'Bruno', 'Carlos'];
+
+const resultado = nomes.map(function(nome, indice, arrayOriginal) {
+  return `${indice + 1} - ${nome.toUpperCase()}`; // NESTE RETURN VOCÊ ESTÁ RETORNANDO UMA STRING COM INTERPOLAÇÃO
+});                                               // ${indice + 1} está somando 1 ao índice. Dessa forma a contagem não inicia a partir de 0, mas inicia no 1
+                                                  // ${nome.toUpperCase()}` está tornando em maiúsculas todas as letras presentes na string "toUppercase()"
+
+console.log(resultado);
+// Saída: ['1 - ANA', '2 - BRUNO', '3 - CARLOS']
+
+
+
+//** EXEMPLO 1**
+
+const cursos=['HTML','CSS','JavaScript','PHP','React']
+cursos.map((el,i)=>{  //O primeiro parâmetro dentro do parêntese é o elemento, o segundo é o índice do elemento
+ console.log("Cursos" + el + " - Posição dp curso:" + i)
+})
+
+
+//**EXEMPLO 2**
+
+const cursos1=['HTML','CSS','JavaScript','PHP','React']
+
+let c=cursos1.map((el,i)=>{  //O primeiro parâmetro dentro do parêntese é o elemento, o segundo é o índice do elemento
+ return '<div>' + el + '<div>'
+})
+// nessa função, você está apenas retornando o valores do array. você também está associando o método map à variável 'c' 
+console.log(c)
+
+
+
+//**EXEMPLO 3**
+
+const array1 = [1, 4, 9, 16];
+
+// Pass a function to map
+const map1 = array1.map((x) => x * 2);
+
+console.log(map1);
+// Expected output: Array [2, 8, 18, 32]
+
+/*
+Nessa função x é parâmetro 'elemento', x*2 é o retorno que ocorre dentro do escopo dessa função - ele está multiplicando o valor de cada array por 2 e retornando
+A const map1 vai retornar [2,8,18,32], mas a const array1 sempre vai retornar [1,4,9,16]
+*/
+//**EXEMPLO 4**
+
+var numbers = [1, 4, 9];
+var doubles = numbers.map(function (num) {
+  return num * 2;
+});
+// doubles é agora [2, 8, 18]. numbers ainda é [1, 4, 9]
+
+
+//Função Callback
+//Uma função callback é uma função passada a outra função como argumento, que é então invocado dentro da função externa para completar algum tipo de rotina ou ação.
+
+//Aqui está um pequeno exemplo:
+function greeting(name) {
+  alert("Olá " + name);
+}
+
+function processUserInput(callback) {
+  var name = prompt("Por favor insira seu nome.");
+  callback(name);
+}
+
+let chamada= processUserInput(greeting);
+console.log(chamada)
+//O exemplo acima é de uma synchronous callback, uma vez que é executada imediatamente.
+
+//Note, no entanto, que callbacks são normalmente utilizados para continuar a execução do código após uma operação asynchronous ser terminada — essas são chamadas 
+//asynchronous callbacks. Um bom exemplo são as funções callback executadas dentro de um bloco .then() encadeado ao final de uma promessa após essa promessa ser 
+//cumprida ou rejeitada. Essa estrutura é usada em muitas APIs da web modernas, como a fetch().
+
+</script>
+</html>
