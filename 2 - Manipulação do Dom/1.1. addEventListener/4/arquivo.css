@@ -1,0 +1,67 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+button{
+    width: 150px;
+    height: 40px;
+    background-color: #025;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;/*alinha os itens no eixo principal. como é column, o eixo principal é o vertical*/
+    align-items: center;
+}
+.curso{
+    display: flex; /* definição de contêiner flexível */
+    justify-content: center; 
+    /* é uma propiedade que alinha itens dentro de um contêiner flexível */
+    /* é usado em contêiner que o layout flexível(flex box) ou de grade (css grid)
+    A propiedade controla o alinhamento dos itens ao longo do eixo principal, que é horizontal por
+    padrão - flex-direction: row - e vertical quando - flex-direction: collum.
+    */
+    width: 200px; /* definição da largura da tag */
+    border: 4px solid #888; /* definição do tamanho, cor e estilo da borda */
+    border-radius: 10px;  /* definição das pontas da borda */
+    padding: 10px; /* definição do espaçamento interno */
+    margin: 5px 0px;
+    cursor: pointer
+}
+/* .curso:hover{
+    border-color: rgb(33, 11, 231); /* definição da cor da borda - a borda muda de cor quando o mouse passar por cima /
+} */
+.c1{
+    background-color: #ccc; /* definição do fundo de "c1" */
+    color: #444;
+}
+.c2{
+    background-color: #444; /* definição do fundo de "c2" */
+    color: #ccc;
+}
+.caixa{
+    border: 4px solid #000;/*borda ao redor do elemento*/
+    background-color: #eee;/*cor de fundo do elemento*/
+    padding: 10px;/*espaço de dentro entre o conteúdo e a borda*/
+    display: flex;/* transforma o elemento em um container flexível*/
+    flex-direction: column;/*direção dos itens filhos---- column: um embaixo do outro(vertical)*/
+    justify-content: center;/*alinha os itens no eixo principal. como é column, o eixo principal é o vertical*/
+    align-items: center;/*alinha no eixo cruzado( oposto do principal ) => nesse caso, o eixo cruzado é o horizontal*/
+    margin: 5px;/*espaço de fora, entre esse elemento e outros ao redor*/
+    height: 500px;/**/
+    width: 300px;/**/
+}
+.selecionado{
+ background-color: #444 !important;
+ color: #ccc !important;
+ border-color: #f00 !important;  
+}
+/* esse !important será usado como prioridade na frente de outra elemento que é idêntico ou parecido
+com os mesmo atributos de outro elemento*/
